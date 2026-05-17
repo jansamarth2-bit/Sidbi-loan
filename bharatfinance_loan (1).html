@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatFinance – MSME Business Loan | ₹50 लाख तक</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0a1f44; --navy2:#0d3068; --saffron:#f7941d; --gold:#e8b44b;
+  --teal:#00796b; --teal2:#004d40; --light:#f4f7fb; --white:#fff;
+  --border:#d4dde8; --text:#1a2c4e; --muted:#5a6a85; --success:#2e7d32;
+  --err:#c62828; --radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--light);color:var(--text);}
+
+/* TOPBAR */
+.topbar{background:var(--navy);color:#8aafd0;font-size:12px;padding:6px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+.topbar a{color:#8aafd0;text-decoration:none;margin-left:14px;}
+.topbar a:hover{color:var(--saffron);}
+
+/* HEADER */
+header{background:var(--white);border-bottom:3px solid var(--saffron);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.09);}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--navy),var(--teal));border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#fff;font-weight:900;}
+.logo-text strong{display:block;font-size:19px;color:var(--navy);font-family:'Playfair Display',serif;}
+.logo-text span{font-size:10px;color:var(--muted);letter-spacing:.5px;}
+nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+nav a{font-size:13px;color:var(--text);text-decoration:none;font-weight:600;padding:6px 12px;border-radius:6px;transition:.2s;}
+nav a:hover{background:var(--light);color:var(--saffron);}
+.nav-cta{background:var(--saffron)!important;color:#fff!important;padding:8px 18px!important;}
+.nav-cta:hover{background:#d97f10!important;}
+
+/* HERO */
+.hero{background:linear-gradient(120deg,var(--navy) 0%,var(--navy2) 55%,#0a4a7a 100%);padding:56px 32px;display:flex;gap:40px;align-items:flex-start;justify-content:center;flex-wrap:wrap;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(0,121,107,.25) 0%,transparent 60%);}
+.hero-content{max-width:500px;color:#fff;z-index:1;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(247,148,29,.18);border:1px solid var(--saffron);color:var(--saffron);padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.5px;margin-bottom:18px;text-transform:uppercase;}
+.hero h1{font-family:'Playfair Display',serif;font-size:38px;line-height:1.2;margin-bottom:14px;}
+.hero h1 span{color:var(--gold);}
+.hero p{font-size:15px;color:#aac0dd;line-height:1.75;margin-bottom:24px;}
+.hero-stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px;}
+.stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:12px 18px;min-width:110px;}
+.stat-val{font-size:22px;font-weight:800;color:var(--gold);}
+.stat-label{font-size:11px;color:#8aafd0;margin-top:2px;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{display:inline-block;padding:13px 28px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;border:none;transition:all .22s;font-family:'Nunito',sans-serif;}
+.btn-primary{background:var(--saffron);color:#fff;}
+.btn-primary:hover{background:#d97f10;transform:translateY(-1px);box-shadow:0 6px 20px rgba(247,148,29,.4);}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.09);}
+.btn-navy{background:var(--navy);color:#fff;}
+.btn-navy:hover{background:var(--navy2);box-shadow:0 6px 20px rgba(10,31,68,.4);}
+.btn-teal{background:var(--teal);color:#fff;}
+.btn-teal:hover{background:var(--teal2);}
+.btn-full{width:100%;text-align:center;}
+
+/* ═══ LOAN CALCULATOR CARD ═══ */
+.calc-card{background:#fff;border-radius:16px;padding:28px 24px;width:420px;flex-shrink:0;box-shadow:0 24px 64px rgba(0,0,0,.28);z-index:1;animation:fadeUp .7s ease;}
+.calc-card h2{font-size:17px;color:var(--navy);font-weight:800;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--light);}
+
+/* Offer Banner */
+.offer-banner{background:linear-gradient(90deg,#e8f5e9,#f1f8e9);border:1px solid #a5d6a7;border-radius:8px;padding:9px 14px;margin-bottom:18px;font-size:13px;color:var(--success);font-weight:700;display:flex;align-items:center;gap:8px;}
+
+/* Sliders */
+.field-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;justify-content:space-between;}
+.field-label span{color:var(--navy);font-size:14px;font-weight:800;}
+.slider-wrap{margin-bottom:18px;}
+input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:3px;background:var(--light);outline:none;margin:6px 0;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--saffron);cursor:pointer;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(to right,var(--saffron) var(--pct,0%),var(--light) var(--pct,0%));border-radius:3px;}
+
+/* Tenure Pills */
+.tenure-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.pill{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;color:var(--muted);background:#fff;}
+.pill.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.pill:hover:not(.active){border-color:var(--saffron);color:var(--saffron);}
+
+/* Result Box */
+.result-box{background:linear-gradient(135deg,var(--navy),#0d3868);border-radius:12px;padding:20px;margin-bottom:18px;color:#fff;}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.result-item .rlabel{font-size:11px;color:#8aafd0;margin-bottom:3px;}
+.result-item .rval{font-size:18px;font-weight:800;color:#fff;}
+.result-item .rval.big{font-size:26px;color:var(--gold);}
+.result-divider{grid-column:1/-1;height:1px;background:rgba(255,255,255,.1);}
+.breakdown-bar{margin-top:14px;}
+.bar-track{height:8px;background:rgba(255,255,255,.15);border-radius:4px;overflow:hidden;display:flex;}
+.bar-p{background:var(--teal);border-radius:4px 0 0 4px;}
+.bar-i{background:var(--saffron);}
+.bar-legend{display:flex;gap:16px;margin-top:8px;font-size:11px;}
+.bar-legend span{display:flex;align-items:center;gap:5px;}
+.dot{width:8px;height:8px;border-radius:50%;}
+.dot-teal{background:var(--teal);}
+.dot-saffron{background:var(--saffron);}
+
+/* ════ TRUST BAR ════ */
+.trust-bar{background:#fff;border-bottom:1px solid var(--border);padding:14px 32px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:600;}
+.trust-icon{font-size:18px;}
+
+/* ════ SECTIONS ════ */
+.section{padding:60px 32px;max-width:1100px;margin:0 auto;}
+.sec-title{text-align:center;margin-bottom:44px;}
+.sec-title h2{font-family:'Playfair Display',serif;font-size:30px;color:var(--navy);margin-bottom:8px;}
+.sec-title p{color:var(--muted);font-size:14px;}
+.underline{width:56px;height:3px;background:var(--saffron);margin:10px auto 0;border-radius:2px;}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
+.feature-card{background:#fff;border-radius:var(--radius);padding:26px 22px;border:1px solid var(--border);transition:all .28s;position:relative;overflow:hidden;}
+.feature-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:0;background:var(--saffron);transition:height .3s;}
+.feature-card:hover{box-shadow:0 12px 36px rgba(0,0,0,.1);transform:translateY(-3px);}
+.feature-card:hover::before{height:100%;}
+.fi{font-size:30px;margin-bottom:12px;}
+.feature-card h3{font-size:15px;color:var(--navy);margin-bottom:6px;font-weight:800;}
+.feature-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+/* LOAN PRODUCTS */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
+.product-card{background:#fff;border-radius:var(--radius);padding:28px 24px;border:2px solid var(--border);cursor:pointer;transition:all .25s;position:relative;}
+.product-card.selected{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,121,107,.12);}
+.product-card:hover{border-color:var(--saffron);}
+.product-card .selected-badge{display:none;position:absolute;top:14px;right:14px;background:var(--teal);color:#fff;font-size:11px;padding:3px 9px;border-radius:10px;font-weight:700;}
+.product-card.selected .selected-badge{display:block;}
+.product-icon{font-size:36px;margin-bottom:14px;}
+.product-card h3{font-size:16px;color:var(--navy);font-weight:800;margin-bottom:6px;}
+.product-card .product-rate{font-size:22px;font-weight:900;color:var(--teal);margin-bottom:4px;}
+.product-card .product-rate span{font-size:13px;font-weight:600;color:var(--muted);}
+.product-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.product-card .product-max{font-size:12px;font-weight:700;color:var(--saffron);background:#fff8f0;padding:4px 10px;border-radius:6px;display:inline-block;}
+
+/* EMI TABLE */
+.emi-table-section{background:#fff;padding:60px 32px;}
+.emi-table-wrap{max-width:900px;margin:0 auto;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+th{background:var(--navy);color:#fff;padding:14px 16px;text-align:left;font-weight:700;}
+th:first-child{border-radius:8px 0 0 0;}
+th:last-child{border-radius:0 8px 0 0;}
+tr:nth-child(even) td{background:#f0f4fb;}
+td{padding:12px 16px;border-bottom:1px solid var(--border);}
+.hl td{color:var(--teal);font-weight:800;background:#e8f5f3!important;}
+.hl td:first-child::before{content:'⭐ ';}
+
+/* ELIGIBILITY */
+.elig-section{padding:60px 32px;max-width:1100px;margin:0 auto;}
+.elig-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.elig-box{background:#fff;border-radius:var(--radius);padding:28px;border:1px solid var(--border);}
+.elig-box h3{font-size:17px;color:var(--navy);margin-bottom:18px;font-weight:800;}
+.elig-list{list-style:none;}
+.elig-list li{padding:9px 0;font-size:13.5px;border-bottom:1px solid var(--light);display:flex;align-items:flex-start;gap:10px;}
+.elig-list li::before{content:'✔';color:var(--teal);font-weight:800;margin-top:1px;flex-shrink:0;}
+
+/* STEPS */
+.steps-section{background:linear-gradient(120deg,var(--navy),var(--navy2));padding:60px 32px;}
+.steps-inner{max-width:900px;margin:0 auto;}
+.steps-title{text-align:center;color:#fff;margin-bottom:44px;}
+.steps-title h2{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:8px;}
+.steps-title p{color:#8aafd0;font-size:14px;}
+.steps-grid{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.step{text-align:center;flex:1;min-width:160px;padding:0 12px;position:relative;}
+.step:not(:last-child)::after{content:'→';position:absolute;right:-8px;top:18px;color:var(--saffron);font-size:20px;font-weight:900;}
+.step-num{width:46px;height:46px;background:var(--saffron);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;margin:0 auto 12px;}
+.step h4{color:#fff;font-size:14px;margin-bottom:6px;}
+.step p{color:#8aafd0;font-size:12px;line-height:1.55;}
+
+/* ════ APPLICATION MODAL ════ */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,31,68,.6);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:18px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:modalIn .3s ease;}
+.modal-header{background:linear-gradient(90deg,var(--navy),var(--navy2));padding:22px 28px;border-radius:18px 18px 0 0;display:flex;justify-content:space-between;align-items:center;}
+.modal-header h2{color:#fff;font-size:18px;font-family:'Playfair Display',serif;}
+.modal-close{background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.modal-close:hover{background:rgba(255,255,255,.3);}
+.modal-body{padding:28px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
+.form-group input,.form-group select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Nunito',sans-serif;color:var(--text);transition:border .2s;outline:none;}
+.form-group input:focus,.form-group select:focus{border-color:var(--saffron);box-shadow:0 0 0 3px rgba(247,148,29,.1);}
+.form-group input.error,.form-group select.error{border-color:var(--err);}
+.err-msg{color:var(--err);font-size:11px;margin-top:4px;display:none;}
+.err-msg.show{display:block;}
+.summary-box{background:var(--light);border-radius:10px;padding:16px;margin-bottom:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.summary-box .s-item .s-label{font-size:11px;color:var(--muted);font-weight:700;}
+.summary-box .s-item .s-val{font-size:16px;font-weight:800;color:var(--navy);}
+.progress-steps{display:flex;gap:0;margin-bottom:24px;}
+.p-step{flex:1;text-align:center;font-size:12px;font-weight:700;padding:8px;border-bottom:3px solid var(--border);color:var(--muted);transition:.2s;}
+.p-step.active{border-color:var(--saffron);color:var(--saffron);}
+.p-step.done{border-color:var(--teal);color:var(--teal);}
+.form-page{display:none;}
+.form-page.active{display:block;}
+.modal-footer{display:flex;gap:10px;justify-content:space-between;padding:0 28px 28px;}
+.success-screen{text-align:center;padding:20px 0;}
+.success-icon{font-size:64px;margin-bottom:16px;}
+.success-screen h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--navy);margin-bottom:10px;}
+.success-screen p{color:var(--muted);font-size:14px;line-height:1.7;}
+.ref-num{background:var(--light);border-radius:8px;padding:10px 16px;margin:16px 0;font-size:16px;font-weight:800;color:var(--teal);letter-spacing:1px;}
+
+/* BOTTOM CTA */
+.bottom-cta{background:linear-gradient(90deg,var(--teal),var(--teal2));padding:52px 32px;text-align:center;color:#fff;}
+.bottom-cta h2{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:12px;}
+.bottom-cta p{color:rgba(255,255,255,.75);font-size:15px;margin-bottom:24px;}
+
+/* FOOTER */
+footer{background:#061326;color:#5a7490;padding:40px 32px 20px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;max-width:1100px;margin:0 auto 28px;}
+.footer-brand p{font-size:13px;line-height:1.7;margin:12px 0;}
+footer h4{color:#aac0dd;font-size:13px;margin-bottom:12px;font-weight:700;}
+footer ul{list-style:none;}
+footer ul li{margin-bottom:8px;}
+footer ul li a{color:#5a7490;font-size:13px;text-decoration:none;}
+footer ul li a:hover{color:var(--saffron);}
+.footer-bottom{border-top:1px solid #122040;padding-top:16px;text-align:center;font-size:11px;color:#3a4f65;max-width:1100px;margin:0 auto;}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--navy);color:#fff;padding:14px 22px;border-radius:10px;font-size:14px;font-weight:600;z-index:9999;transform:translateY(80px);opacity:0;transition:all .35s;max-width:320px;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.success{background:var(--teal);}
+.toast.error{background:var(--err);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes modalIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .topbar,.footer-grid{display:none;}
+  header{padding:0 16px;}
+  nav a:not(.nav-cta){display:none;}
+  .hero{padding:36px 16px;}
+  .hero h1{font-size:26px;}
+  .calc-card{width:100%;}
+  .elig-grid,.form-row{grid-template-columns:1fr;}
+  .section,.elig-section{padding:40px 16px;}
+  .steps-grid{flex-direction:column;align-items:center;}
+  .step:not(:last-child)::after{content:'↓';right:auto;top:auto;bottom:-18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span>🏛️ सरकारी MSME वित्त भागीदार | RBI पंजीकृत | SIDBI प्रमाणित</span>
+  <span><a href="tel:18001234567">☎ 1800-123-4567 (निःशुल्क)</a><a href="#">ईमेल</a><a href="#">हिंदी | English</a></span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo" onclick="scrollTo(0,0)">
+    <div class="logo-icon">BF</div>
+    <div class="logo-text">
+      <strong>BharatFinance</strong>
+      <span>MSME Business Loan Solutions</span>
+    </div>
+  </div>
+  <nav>
+    <a href="#products">लोन चुनें</a>
+    <a href="#calculator">EMI Calculator</a>
+    <a href="#eligibility">पात्रता</a>
+    <a href="#process">प्रक्रिया</a>
+    <a href="#" class="nav-cta btn" onclick="openModal();return false;">आवेदन करें →</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="badge">🎯 विशेष MSME ऑफर – सीमित समय</div>
+    <h1>पाएं <span>₹50 लाख</span> तक का बिज़नेस लोन सिर्फ <span>₹18,000 EMI</span> में</h1>
+    <p>4% प्रति वर्ष की सुपर-कम ब्याज दर, 30 वर्ष तक की अवधि, न्यूनतम दस्तावेज़ और 72 घंटे में स्वीकृति।</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-val">4%</div><div class="stat-label">ब्याज दर/वर्ष</div></div>
+      <div class="stat"><div class="stat-val">₹18K</div><div class="stat-label">मासिक EMI</div></div>
+      <div class="stat"><div class="stat-val">30 Yr</div><div class="stat-label">अधिकतम अवधि</div></div>
+      <div class="stat"><div class="stat-val">72h</div><div class="stat-label">स्वीकृति</div></div>
+    </div>
+    <div class="hero-btns">
+      <button class="btn btn-primary" onclick="openModal()">अभी आवेदन करें</button>
+      <a href="#calculator" class="btn btn-outline">EMI Calculate करें</a>
+    </div>
+  </div>
+
+  <!-- LIVE EMI CALCULATOR CARD -->
+  <div class="calc-card" id="calculator">
+    <h2>🧮 Live EMI Calculator</h2>
+    <div class="offer-banner">✅ विशेष ऑफर: 4% सब्सिडाइज़्ड ब्याज दर सक्रिय</div>
+
+    <!-- Loan Amount Slider -->
+    <div class="slider-wrap">
+      <div class="field-label">लोन राशि (Loan Amount) <span id="lbl-amount">₹50,00,000</span></div>
+      <input type="range" id="sl-amount" min="100000" max="5000000" step="50000" value="5000000" oninput="calcEMI()">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px;"><span>₹1 लाख</span><span>₹50 लाख</span></div>
+    </div>
+
+    <!-- Interest Rate Slider -->
+    <div class="slider-wrap">
+      <div class="field-label">ब्याज दर (Interest Rate) <span id="lbl-rate">4.0%</span></div>
+      <input type="range" id="sl-rate" min="4" max="18" step="0.5" value="4" oninput="calcEMI()">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px;"><span>4%</span><span>18%</span></div>
+    </div>
+
+    <!-- Tenure Pills -->
+    <div>
+      <div class="field-label" style="margin-bottom:10px">अवधि चुनें (Tenure) <span id="lbl-tenure">30 वर्ष</span></div>
+      <div class="tenure-pills" id="tenure-pills">
+        <div class="pill" data-yr="5" onclick="setTenure(this)">5 वर्ष</div>
+        <div class="pill" data-yr="10" onclick="setTenure(this)">10 वर्ष</div>
+        <div class="pill" data-yr="15" onclick="setTenure(this)">15 वर्ष</div>
+        <div class="pill" data-yr="20" onclick="setTenure(this)">20 वर्ष</div>
+        <div class="pill" data-yr="25" onclick="setTenure(this)">25 वर्ष</div>
+        <div class="pill active" data-yr="30" onclick="setTenure(this)">30 वर्ष</div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="result-box">
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="rlabel">मासिक EMI</div>
+          <div class="rval big" id="res-emi">₹18,000</div>
+        </div>
+        <div class="result-item">
+          <div class="rlabel">कुल भुगतान</div>
+          <div class="rval" id="res-total">₹64,80,000</div>
+        </div>
+        <div class="result-divider"></div>
+        <div class="result-item">
+          <div class="rlabel">मूलधन</div>
+          <div class="rval" id="res-principal">₹50,00,000</div>
+        </div>
+        <div class="result-item">
+          <div class="rlabel">कुल ब्याज</div>
+          <div class="rval" id="res-interest">₹14,80,000</div>
+        </div>
+      </div>
+      <div class="breakdown-bar">
+        <div class="bar-track"><div class="bar-p" id="bar-p" style="width:77%"></div><div class="bar-i" id="bar-i" style="width:23%"></div></div>
+        <div class="bar-legend">
+          <span><div class="dot dot-teal"></div><span id="leg-p">मूलधन 77%</span></span>
+          <span><div class="dot dot-saffron"></div><span id="leg-i">ब्याज 23%</span></span>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-navy btn-full" onclick="applyWithCalc()">✅ इस EMI पर आवेदन करें</button>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:9px">* अनुमानित आंकड़े | वास्तविक EMI प्रोफ़ाइल पर निर्भर</p>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🏆</span>12,000+ व्यवसाय लाभान्वित</div>
+  <div class="trust-item"><span class="trust-icon">🔒</span>RBI पंजीकृत</div>
+  <div class="trust-item"><span class="trust-icon">⚡</span>72 घंटे स्वीकृति</div>
+  <div class="trust-item"><span class="trust-icon">📑</span>न्यूनतम दस्तावेज़</div>
+  <div class="trust-item"><span class="trust-icon">💰</span>शून्य फोरक्लोज़र चार्ज</div>
+  <div class="trust-item"><span class="trust-icon">🎯</span>SIDBI भागीदार</div>
+</div>
+
+<!-- LOAN PRODUCTS -->
+<div class="section" id="products">
+  <div class="sec-title">
+    <h2>अपना लोन प्रकार चुनें</h2>
+    <p>अपनी ज़रूरत के अनुसार सही लोन उत्पाद चुनें</p>
+    <div class="underline"></div>
+  </div>
+  <div class="products-grid" id="products-grid">
+    <div class="product-card selected" data-product="MSME टर्म लोन" data-rate="4" data-max="5000000" onclick="selectProduct(this)">
+      <span class="selected-badge">✓ चयनित</span>
+      <div class="product-icon">🏭</div>
+      <h3>MSME टर्म लोन</h3>
+      <div class="product-rate">4.00% <span>प्रति वर्ष</span></div>
+      <p>मशीनरी, उपकरण, और व्यवसाय विस्तार के लिए दीर्घकालिक लोन।</p>
+      <span class="product-max">अधिकतम ₹50 लाख</span>
+    </div>
+    <div class="product-card" data-product="वर्किंग कैपिटल" data-rate="6.5" data-max="2500000" onclick="selectProduct(this)">
+      <span class="selected-badge">✓ चयनित</span>
+      <div class="product-icon">💼</div>
+      <h3>वर्किंग कैपिटल लोन</h3>
+      <div class="product-rate">6.50% <span>प्रति वर्ष</span></div>
+      <p>दैनिक संचालन और कार्यशील पूंजी आवश्यकताओं के लिए।</p>
+      <span class="product-max">अधिकतम ₹25 लाख</span>
+    </div>
+    <div class="product-card" data-product="मशीनरी लोन" data-rate="5" data-max="3000000" onclick="selectProduct(this)">
+      <span class="selected-badge">✓ चयनित</span>
+      <div class="product-icon">⚙️</div>
+      <h3>मशीनरी / उपकरण लोन</h3>
+      <div class="product-rate">5.00% <span>प्रति वर्ष</span></div>
+      <p>नई या पुरानी मशीनरी की खरीद के लिए विशेष लोन।</p>
+      <span class="product-max">अधिकतम ₹30 लाख</span>
+    </div>
+    <div class="product-card" data-product="मुद्रा लोन" data-rate="7" data-max="1000000" onclick="selectProduct(this)">
+      <span class="selected-badge">✓ चयनित</span>
+      <div class="product-icon">🌱</div>
+      <h3>मुद्रा / स्टार्टअप लोन</h3>
+      <div class="product-rate">7.00% <span>प्रति वर्ष</span></div>
+      <p>नए उद्यमियों और स्टार्टअप के लिए सरल लोन सुविधा।</p>
+      <span class="product-max">अधिकतम ₹10 लाख</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div style="background:#fff;padding:60px 0;">
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="sec-title">
+      <h2>क्यों चुनें BharatFinance?</h2>
+      <p>भारत के MSME उद्यमियों का भरोसेमंद वित्तीय साझेदार</p>
+      <div class="underline"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="fi">📉</div><h3>सबसे कम ब्याज दर</h3><p>मात्र 4% प्रति वर्ष — सरकारी सब्सिडी के साथ बाज़ार की सबसे किफ़ायती दर।</p></div>
+      <div class="feature-card"><div class="fi">⚡</div><h3>72 घंटे स्वीकृति</h3><p>ऑनलाइन आवेदन के 72 घंटे में स्वीकृति और 7 दिनों में खाते में पैसे।</p></div>
+      <div class="feature-card"><div class="fi">📋</div><h3>न्यूनतम दस्तावेज़</h3><p>सिर्फ आधार, PAN और बैंक स्टेटमेंट — जटिल कागज़ी कार्रवाई नहीं।</p></div>
+      <div class="feature-card"><div class="fi">🔄</div><h3>लचीला पुनर्भुगतान</h3><p>5 से 30 वर्ष तक की अवधि। अपनी क्षमता अनुसार EMI चुनें।</p></div>
+      <div class="feature-card"><div class="fi">🛡️</div><h3>कोई छुपा शुल्क नहीं</h3><p>100% पारदर्शिता — शून्य प्रोसेसिंग फीस, शून्य फोरक्लोज़र चार्ज।</p></div>
+      <div class="feature-card"><div class="fi">🤝</div><h3>24×7 सहायता</h3><p>हिंदी और अंग्रेजी में समर्पित ग्राहक सेवा और रिलेशनशिप मैनेजर।</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- EMI TABLE -->
+<div class="emi-table-section">
+  <div class="emi-table-wrap">
+    <div class="sec-title">
+      <h2>EMI तुलना तालिका</h2>
+      <p>₹50 लाख पर 4% ब्याज दर से विभिन्न अवधि में EMI</p>
+      <div class="underline"></div>
+    </div>
+    <table>
+      <thead><tr><th>लोन राशि</th><th>अवधि</th><th>ब्याज दर</th><th>मासिक EMI</th><th>कुल ब्याज</th></tr></thead>
+      <tbody>
+        <tr><td>₹10,00,000</td><td>10 वर्ष</td><td>4.00%</td><td>₹10,124</td><td>₹2,14,880</td></tr>
+        <tr><td>₹25,00,000</td><td>20 वर्ष</td><td>4.00%</td><td>₹15,158</td><td>₹11,37,920</td></tr>
+        <tr><td>₹50,00,000</td><td>10 वर्ष</td><td>4.00%</td><td>₹50,623</td><td>₹7,47,760</td></tr>
+        <tr><td>₹50,00,000</td><td>20 वर्ष</td><td>4.00%</td><td>₹30,316</td><td>₹22,75,840</td></tr>
+        <tr class="hl"><td>₹50,00,000</td><td>30 वर्ष</td><td>4.00%</td><td>₹18,000</td><td>₹14,80,000*</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--muted);margin-top:10px">* अनुमानित आंकड़े। वास्तविक EMI आपकी प्रोफ़ाइल पर निर्भर हो सकती है।</p>
+    <div style="margin-top:20px;text-align:center;">
+      <button class="btn btn-primary" onclick="openModal()">इस ऑफर पर आवेदन करें →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ELIGIBILITY -->
+<div class="elig-section" id="eligibility">
+  <div class="sec-title">
+    <h2>पात्रता और दस्तावेज़</h2>
+    <p>जांचें कि आप आवेदन के योग्य हैं या नहीं</p>
+    <div class="underline"></div>
+  </div>
+  <div class="elig-grid">
+    <div class="elig-box">
+      <h3>✅ पात्रता मानदंड</h3>
+      <ul class="elig-list">
+        <li>भारतीय नागरिक, आयु 21–65 वर्ष</li>
+        <li>MSME / छोटे व्यापारी / स्व-नियोजित व्यक्ति</li>
+        <li>न्यूनतम 2 वर्ष का व्यवसाय इतिहास</li>
+        <li>सालाना टर्नओवर ₹10 लाख या अधिक</li>
+        <li>CIBIL स्कोर 700 या उससे अधिक</li>
+        <li>कोई चालू NPA या डिफ़ॉल्ट नहीं</li>
+        <li>उद्यम पंजीकरण (Udyam Registration) होना चाहिए</li>
+      </ul>
+    </div>
+    <div class="elig-box">
+      <h3>📄 आवश्यक दस्तावेज़</h3>
+      <ul class="elig-list">
+        <li>आधार कार्ड (Aadhaar Card)</li>
+        <li>PAN कार्ड (व्यक्तिगत और व्यवसाय)</li>
+        <li>पिछले 12 महीने का बैंक स्टेटमेंट</li>
+        <li>GST रजिस्ट्रेशन / उद्यम सर्टिफिकेट</li>
+        <li>व्यवसाय के स्वामित्व का प्रमाण</li>
+        <li>नवीनतम ITR (2 वर्ष)</li>
+        <li>बिज़नेस प्रोफ़ाइल / प्रोजेक्ट रिपोर्ट</li>
+      </ul>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:28px;">
+    <button class="btn btn-teal" onclick="checkEligibility()">पात्रता जांचें →</button>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="steps-section" id="process">
+  <div class="steps-inner">
+    <div class="steps-title">
+      <h2>आवेदन कैसे करें?</h2>
+      <p>सिर्फ 4 आसान चरणों में पाएं अपना लोन</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step"><div class="step-num">1</div><h4>ऑनलाइन आवेदन</h4><p>फॉर्म भरें और दस्तावेज़ अपलोड करें</p></div>
+      <div class="step"><div class="step-num">2</div><h4>दस्तावेज़ सत्यापन</h4><p>24 घंटे में हमारी टीम जांच करेगी</p></div>
+      <div class="step"><div class="step-num">3</div><h4>लोन स्वीकृति</h4><p>72 घंटे में SMS और ईमेल से सूचना</p></div>
+      <div class="step"><div class="step-num">4</div><h4>राशि वितरण</h4><p>7 कार्यदिवसों में खाते में</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <h2>आज ही शुरू करें — सीमित समय का ऑफर!</h2>
+  <p>₹50 लाख तक का लोन, मात्र ₹18,000 EMI — 4% ब्याज दर पर</p>
+  <button class="btn btn-primary" style="font-size:16px;padding:15px 38px;" onclick="openModal()">निःशुल्क आवेदन करें →</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-icon">BF</div><div class="logo-text"><strong style="color:#aac0dd">BharatFinance</strong><span>MSME Loan Solutions</span></div></div>
+      <p>MSME उद्यमियों को किफ़ायती वित्त प्रदान करने के लिए प्रतिबद्ध। RBI पंजीकृत | SIDBI भागीदार | उद्यम मित्र।</p>
+    </div>
+    <div><h4>लोन उत्पाद</h4><ul><li><a href="#products">MSME टर्म लोन</a></li><li><a href="#products">वर्किंग कैपिटल</a></li><li><a href="#products">मशीनरी लोन</a></li><li><a href="#products">मुद्रा लोन</a></li></ul></div>
+    <div><h4>त्वरित लिंक</h4><ul><li><a href="#calculator">EMI Calculator</a></li><li><a href="#eligibility">पात्रता जांचें</a></li><li><a href="#process">आवेदन प्रक्रिया</a></li><li><a href="#" onclick="openModal();return false">आवेदन करें</a></li></ul></div>
+    <div><h4>संपर्क</h4><ul><li><a href="tel:18001234567">📞 1800-123-4567</a></li><li><a href="mailto:help@bharatfinance.in">📧 help@bharatfinance.in</a></li><li><a href="#">🕐 सोम–शनि, 9AM–6PM</a></li><li><a href="#">📍 नई दिल्ली, भारत</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2024 BharatFinance Pvt. Ltd. | गोपनीयता नीति | शर्तें और नियम | Disclaimer: सभी EMI आंकड़े अनुमानित हैं। वास्तविक EMI आपकी प्रोफ़ाइल पर निर्भर होगी।</div>
+</footer>
+
+<!-- ═══════════ APPLICATION MODAL ═══════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>📝 लोन आवेदन फॉर्म</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- Progress -->
+      <div class="progress-steps" id="progress-steps">
+        <div class="p-step active" id="ps1">1. व्यक्तिगत</div>
+        <div class="p-step" id="ps2">2. व्यवसाय</div>
+        <div class="p-step" id="ps3">3. लोन विवरण</div>
+        <div class="p-step" id="ps4">4. पुष्टि</div>
+      </div>
+
+      <!-- PAGE 1: Personal -->
+      <div class="form-page active" id="fp1">
+        <div class="form-row">
+          <div class="form-group"><label>पहला नाम *</label><input type="text" id="f-fname" placeholder="जैसे: राम"><div class="err-msg" id="e-fname">कृपया नाम दर्ज करें</div></div>
+          <div class="form-group"><label>अंतिम नाम *</label><input type="text" id="f-lname" placeholder="जैसे: शर्मा"><div class="err-msg" id="e-lname">कृपया अंतिम नाम दर्ज करें</div></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>मोबाइल नंबर *</label><input type="tel" id="f-phone" placeholder="10 अंक" maxlength="10"><div class="err-msg" id="e-phone">वैध 10 अंकों का नंबर दर्ज करें</div></div>
+          <div class="form-group"><label>ईमेल *</label><input type="email" id="f-email" placeholder="your@email.com"><div class="err-msg" id="e-email">वैध ईमेल दर्ज करें</div></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>जन्म तिथि *</label><input type="date" id="f-dob"><div class="err-msg" id="e-dob">जन्म तिथि आवश्यक है</div></div>
+          <div class="form-group"><label>PAN नंबर *</label><input type="text" id="f-pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase"><div class="err-msg" id="e-pan">वैध PAN दर्ज करें</div></div>
+        </div>
+        <div class="form-group"><label>आधार नंबर *</label><input type="text" id="f-aadhar" placeholder="12 अंक" maxlength="12"><div class="err-msg" id="e-aadhar">12 अंकों का आधार नंबर दर्ज करें</div></div>
+      </div>
+
+      <!-- PAGE 2: Business -->
+      <div class="form-page" id="fp2">
+        <div class="form-group"><label>व्यवसाय का नाम *</label><input type="text" id="f-bname" placeholder="जैसे: राम इंटरप्राइजेज़"><div class="err-msg" id="e-bname">व्यवसाय का नाम आवश्यक है</div></div>
+        <div class="form-row">
+          <div class="form-group"><label>व्यवसाय प्रकार *</label>
+            <select id="f-btype">
+              <option value="">-- चुनें --</option>
+              <option>प्रोपराइटरशिप</option>
+              <option>पार्टनरशिप</option>
+              <option>प्राइवेट लिमिटेड</option>
+              <option>LLP</option>
+              <option>सोल ट्रेडर</option>
+            </select>
+            <div class="err-msg" id="e-btype">व्यवसाय प्रकार चुनें</div>
+          </div>
+          <div class="form-group"><label>व्यवसाय की उम्र *</label>
+            <select id="f-bage">
+              <option value="">-- चुनें --</option>
+              <option>2–3 वर्ष</option>
+              <option>3–5 वर्ष</option>
+              <option>5–10 वर्ष</option>
+              <option>10 वर्ष से अधिक</option>
+            </select>
+            <div class="err-msg" id="e-bage">व्यवसाय की उम्र चुनें</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>वार्षिक टर्नओवर *</label>
+            <select id="f-turn">
+              <option value="">-- चुनें --</option>
+              <option>₹10–25 लाख</option>
+              <option>₹25–50 लाख</option>
+              <option>₹50 लाख – 1 करोड़</option>
+              <option>₹1 करोड़ से अधिक</option>
+            </select>
+            <div class="err-msg" id="e-turn">टर्नओवर चुनें</div>
+          </div>
+          <div class="form-group"><label>GST नंबर</label><input type="text" id="f-gst" placeholder="22AAAAA0000A1Z5" maxlength="15" style="text-transform:uppercase"></div>
+        </div>
+        <div class="form-group"><label>व्यवसाय का पता *</label><input type="text" id="f-addr" placeholder="पूरा पता दर्ज करें"><div class="err-msg" id="e-addr">पता आवश्यक है</div></div>
+        <div class="form-row">
+          <div class="form-group"><label>राज्य *</label>
+            <select id="f-state">
+              <option value="">-- राज्य चुनें --</option>
+              <option>महाराष्ट्र</option><option>उत्तर प्रदेश</option><option>राजस्थान</option>
+              <option>गुजरात</option><option>मध्य प्रदेश</option><option>बिहार</option>
+              <option>तमिलनाडु</option><option>कर्नाटक</option><option>दिल्ली</option><option>अन्य</option>
+            </select>
+            <div class="err-msg" id="e-state">राज्य चुनें</div>
+          </div>
+          <div class="form-group"><label>पिन कोड *</label><input type="text" id="f-pin" placeholder="6 अंक" maxlength="6"><div class="err-msg" id="e-pin">6 अंकों का पिन कोड दर्ज करें</div></div>
+        </div>
+      </div>
+
+      <!-- PAGE 3: Loan Details -->
+      <div class="form-page" id="fp3">
+        <div class="form-group"><label>लोन प्रकार *</label>
+          <select id="f-ltype">
+            <option value="MSME टर्म लोन">MSME टर्म लोन (4%)</option>
+            <option value="वर्किंग कैपिटल">वर्किंग कैपिटल (6.5%)</option>
+            <option value="मशीनरी लोन">मशीनरी लोन (5%)</option>
+            <option value="मुद्रा लोन">मुद्रा लोन (7%)</option>
+          </select>
+        </div>
+        <div class="form-group"><label>लोन राशि *</label>
+          <select id="f-lamount">
+            <option value="500000">₹5 लाख</option>
+            <option value="1000000">₹10 लाख</option>
+            <option value="2000000">₹20 लाख</option>
+            <option value="3000000">₹30 लाख</option>
+            <option value="4000000">₹40 लाख</option>
+            <option value="5000000" selected>₹50 लाख</option>
+          </select>
+        </div>
+        <div class="form-group"><label>अवधि (Tenure) *</label>
+          <select id="f-tenure">
+            <option value="5">5 वर्ष</option>
+            <option value="10">10 वर्ष</option>
+            <option value="15">15 वर्ष</option>
+            <option value="20">20 वर्ष</option>
+            <option value="25">25 वर्ष</option>
+            <option value="30" selected>30 वर्ष</option>
+          </select>
+        </div>
+        <!-- Summary box -->
+        <div class="summary-box" id="loan-summary">
+          <div class="s-item"><div class="s-label">मासिक EMI</div><div class="s-val" id="s-emi">₹18,000</div></div>
+          <div class="s-item"><div class="s-label">कुल भुगतान</div><div class="s-val" id="s-total">₹64,80,000</div></div>
+          <div class="s-item"><div class="s-label">ब्याज दर</div><div class="s-val" id="s-rate">4.00%</div></div>
+          <div class="s-item"><div class="s-label">कुल ब्याज</div><div class="s-val" id="s-int">₹14,80,000</div></div>
+        </div>
+        <div class="form-group"><label>लोन का उद्देश्य *</label>
+          <select id="f-purpose">
+            <option value="">-- चुनें --</option>
+            <option>मशीनरी/उपकरण खरीद</option>
+            <option>व्यवसाय विस्तार</option>
+            <option>कार्यशील पूंजी</option>
+            <option>स्टॉक/इन्वेंटरी</option>
+            <option>निर्माण/रियल एस्टेट</option>
+            <option>अन्य</option>
+          </select>
+          <div class="err-msg" id="e-purpose">उद्देश्य चुनें</div>
+        </div>
+      </div>
+
+      <!-- PAGE 4: Confirm -->
+      <div class="form-page" id="fp4">
+        <div id="confirm-content"></div>
+        <div class="form-group" style="margin-top:16px">
+          <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer">
+            <input type="checkbox" id="f-consent" style="margin-top:3px;width:auto"> 
+            <span style="font-size:13px;color:var(--muted)">मैं BharatFinance की <a href="#" style="color:var(--teal)">शर्तों और नियमों</a> से सहमत हूं और अपने डेटा के उपयोग की अनुमति देता/देती हूं।</span>
+          </label>
+          <div class="err-msg" id="e-consent">सहमति आवश्यक है</div>
+        </div>
+      </div>
+
+      <!-- Success Screen -->
+      <div class="form-page" id="fp-success">
+        <div class="success-screen">
+          <div class="success-icon">🎉</div>
+          <h3>आवेदन सफलतापूर्वक जमा हुआ!</h3>
+          <p>बधाई हो! आपका लोन आवेदन प्राप्त हो गया है। हमारी टीम 72 घंटों के भीतर आपसे संपर्क करेगी।</p>
+          <div class="ref-num" id="ref-num">BF-2024-XXXXXX</div>
+          <p style="font-size:12px">यह संदर्भ संख्या सुरक्षित रखें। <br>SMS और ईमेल पर भी भेजा जाएगा।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Buttons -->
+    <div class="modal-footer" id="modal-footer">
+      <button class="btn" id="btn-prev" onclick="prevPage()" style="background:var(--light);color:var(--text);display:none">← वापस</button>
+      <button class="btn btn-primary" id="btn-next" onclick="nextPage()">आगे बढ़ें →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════ GLOBAL STATE ═══════════
+let state = {
+  loanAmount: 5000000,
+  rate: 4,
+  tenureYr: 30,
+  selectedProduct: 'MSME टर्म लोन',
+  currentPage: 1,
+  totalPages: 4
+};
+
+// ═══════════ EMI CALCULATION ═══════════
+function calcEMIValue(P, annualRate, years) {
+  const r = annualRate / 12 / 100;
+  const n = years * 12;
+  if (r === 0) return P / n;
+  return P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+}
+
+function fmt(n) {
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function calcEMI() {
+  const amtSlider = document.getElementById('sl-amount');
+  const rateSlider = document.getElementById('sl-rate');
+  state.loanAmount = parseInt(amtSlider.value);
+  state.rate = parseFloat(rateSlider.value);
+
+  // Update slider gradient fill
+  updateSliderFill(amtSlider, 100000, 5000000);
+  updateSliderFill(rateSlider, 4, 18);
+
+  const emi = calcEMIValue(state.loanAmount, state.rate, state.tenureYr);
+  const total = emi * state.tenureYr * 12;
+  const interest = total - state.loanAmount;
+  const pPct = Math.round(state.loanAmount / total * 100);
+  const iPct = 100 - pPct;
+
+  document.getElementById('lbl-amount').textContent = fmt(state.loanAmount);
+  document.getElementById('lbl-rate').textContent = state.rate.toFixed(1) + '%';
+  document.getElementById('res-emi').textContent = fmt(emi);
+  document.getElementById('res-total').textContent = fmt(total);
+  document.getElementById('res-principal').textContent = fmt(state.loanAmount);
+  document.getElementById('res-interest').textContent = fmt(interest);
+  document.getElementById('bar-p').style.width = pPct + '%';
+  document.getElementById('bar-i').style.width = iPct + '%';
+  document.getElementById('leg-p').textContent = 'मूलधन ' + pPct + '%';
+  document.getElementById('leg-i').textContent = 'ब्याज ' + iPct + '%';
+}
+
+function updateSliderFill(el, min, max) {
+  const pct = ((el.value - min) / (max - min)) * 100;
+  el.style.setProperty('--pct', pct + '%');
+}
+
+function setTenure(el) {
+  document.querySelectorAll('#tenure-pills .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  state.tenureYr = parseInt(el.dataset.yr);
+  document.getElementById('lbl-tenure').textContent = state.tenureYr + ' वर्ष';
+  calcEMI();
+}
+
+// ═══════════ PRODUCT SELECTION ═══════════
+function selectProduct(el) {
+  document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.selectedProduct = el.dataset.product;
+  const rate = parseFloat(el.dataset.rate);
+  const max = parseInt(el.dataset.max);
+  // Update calculator
+  document.getElementById('sl-rate').value = rate;
+  document.getElementById('sl-amount').max = max;
+  if (state.loanAmount > max) {
+    document.getElementById('sl-amount').value = max;
+    state.loanAmount = max;
+  }
+  state.rate = rate;
+  calcEMI();
+  showToast('✅ ' + state.selectedProduct + ' चुना गया — ' + rate + '% ब्याज दर', 'success');
+  document.getElementById('calculator').scrollIntoView({behavior:'smooth'});
+}
+
+// ═══════════ MODAL ═══════════
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  state.currentPage = 1;
+  renderPage();
+  // Pre-fill loan type from selected product
+  const ltype = document.getElementById('f-ltype');
+  if (ltype) ltype.value = state.selectedProduct;
+  updateLoanSummary();
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+function renderPage() {
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('fp' + i).classList.remove('active');
+    document.getElementById('ps' + i).className = 'p-step';
+  }
+  document.getElementById('fp-success').classList.remove('active');
+
+  if (state.currentPage <= 4) {
+    document.getElementById('fp' + state.currentPage).classList.add('active');
+    for (let i = 1; i < state.currentPage; i++) document.getElementById('ps' + i).classList.add('done');
+    document.getElementById('ps' + state.currentPage).classList.add('active');
+  }
+
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const footer = document.getElementById('modal-footer');
+
+  if (state.currentPage === 1) { btnPrev.style.display = 'none'; }
+  else { btnPrev.style.display = 'inline-block'; }
+
+  if (state.currentPage === 4) { btnNext.textContent = '✅ आवेदन जमा करें'; }
+  else if (state.currentPage > 4) { footer.style.display = 'none'; return; }
+  else { btnNext.textContent = 'आगे बढ़ें →'; }
+
+  footer.style.display = 'flex';
+}
+
+function nextPage() {
+  if (!validatePage(state.currentPage)) return;
+  if (state.currentPage === 3) { buildConfirm(); }
+  if (state.currentPage === 4) { submitApplication(); return; }
+  state.currentPage++;
+  renderPage();
+}
+
+function prevPage() {
+  if (state.currentPage > 1) { state.currentPage--; renderPage(); }
+}
+
+function validatePage(page) {
+  let ok = true;
+  const req = (id, errId, check) => {
+    const el = document.getElementById(id);
+    const err = document.getElementById(errId);
+    const pass = check(el.value);
+    el.classList.toggle('error', !pass);
+    err.classList.toggle('show', !pass);
+    if (!pass) ok = false;
+  };
+
+  if (page === 1) {
+    req('f-fname','e-fname', v => v.trim().length >= 2);
+    req('f-lname','e-lname', v => v.trim().length >= 2);
+    req('f-phone','e-phone', v => /^[6-9]\d{9}$/.test(v));
+    req('f-email','e-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+    req('f-dob','e-dob', v => { if(!v) return false; const d=new Date(v),now=new Date(); const age=(now-d)/31557600000; return age>=21&&age<=65; });
+    req('f-pan','e-pan', v => /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(v.toUpperCase()));
+    req('f-aadhar','e-aadhar', v => /^\d{12}$/.test(v));
+  } else if (page === 2) {
+    req('f-bname','e-bname', v => v.trim().length >= 2);
+    req('f-btype','e-btype', v => v !== '');
+    req('f-bage','e-bage', v => v !== '');
+    req('f-turn','e-turn', v => v !== '');
+    req('f-addr','e-addr', v => v.trim().length >= 5);
+    req('f-state','e-state', v => v !== '');
+    req('f-pin','e-pin', v => /^\d{6}$/.test(v));
+  } else if (page === 3) {
+    req('f-purpose','e-purpose', v => v !== '');
+  } else if (page === 4) {
+    const cb = document.getElementById('f-consent');
+    const err = document.getElementById('e-consent');
+    if (!cb.checked) { err.classList.add('show'); ok = false; }
+    else { err.classList.remove('show'); }
+  }
+  return ok;
+}
+
+function buildConfirm() {
+  const lamt = parseInt(document.getElementById('f-lamount').value);
+  const ltype = document.getElementById('f-ltype').value;
+  const tenure = parseInt(document.getElementById('f-tenure').value);
+  const rateMap = {'MSME टर्म लोन':4,'वर्किंग कैपिटल':6.5,'मशीनरी लोन':5,'मुद्रा लोन':7};
+  const rate = rateMap[ltype] || 4;
+  const emi = calcEMIValue(lamt, rate, tenure);
+
+  document.getElementById('confirm-content').innerHTML = `
+    <div style="background:var(--light);border-radius:10px;padding:18px;margin-bottom:16px;">
+      <h4 style="color:var(--navy);margin-bottom:12px;font-size:15px">📋 आवेदन सारांश</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;">
+        <div><span style="color:var(--muted)">नाम:</span> <strong>${document.getElementById('f-fname').value} ${document.getElementById('f-lname').value}</strong></div>
+        <div><span style="color:var(--muted)">मोबाइल:</span> <strong>${document.getElementById('f-phone').value}</strong></div>
+        <div><span style="color:var(--muted)">व्यवसाय:</span> <strong>${document.getElementById('f-bname').value}</strong></div>
+        <div><span style="color:var(--muted)">लोन प्रकार:</span> <strong>${ltype}</strong></div>
+        <div><span style="color:var(--muted)">राशि:</span> <strong>${fmt(lamt)}</strong></div>
+        <div><span style="color:var(--muted)">अवधि:</span> <strong>${tenure} वर्ष</strong></div>
+        <div><span style="color:var(--muted)">ब्याज दर:</span> <strong style="color:var(--teal)">${rate}%</strong></div>
+        <div><span style="color:var(--muted)">मासिक EMI:</span> <strong style="color:var(--saffron);font-size:16px">${fmt(emi)}</strong></div>
+      </div>
+    </div>`;
+}
+
+function updateLoanSummary() {
+  const el = document.getElementById('f-lamount');
+  const tel = document.getElementById('f-tenure');
+  const ltEl = document.getElementById('f-ltype');
+  if (!el || !tel || !ltEl) return;
+  const lamt = parseInt(el.value);
+  const tenure = parseInt(tel.value);
+  const rateMap = {'MSME टर्म लोन':4,'वर्किंग कैपिटल':6.5,'मशीनरी लोन':5,'मुद्रा लोन':7};
+  const rate = rateMap[ltEl.value] || 4;
+  const emi = calcEMIValue(lamt, rate, tenure);
+  const total = emi * tenure * 12;
+  const interest = total - lamt;
+  document.getElementById('s-emi').textContent = fmt(emi);
+  document.getElementById('s-total').textContent = fmt(total);
+  document.getElementById('s-rate').textContent = rate.toFixed(2) + '%';
+  document.getElementById('s-int').textContent = fmt(interest);
+}
+
+// Live update loan summary when user changes fields in page 3
+['f-lamount','f-tenure','f-ltype'].forEach(id => {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', updateLoanSummary);
+  }, 500);
+});
+
+function submitApplication() {
+  const ref = 'BF-2024-' + Math.floor(100000 + Math.random() * 900000);
+  document.getElementById('ref-num').textContent = ref;
+
+  // Hide all pages, show success
+  for (let i = 1; i <= 4; i++) document.getElementById('fp' + i).classList.remove('active');
+  document.getElementById('fp-success').classList.add('active');
+  document.getElementById('modal-footer').style.display = 'none';
+
+  // Update progress to all done
+  for (let i = 1; i <= 4; i++) { document.getElementById('ps' + i).className = 'p-step done'; }
+
+  showToast('🎉 आवेदन सफलतापूर्वक जमा! Ref: ' + ref, 'success');
+}
+
+function applyWithCalc() {
+  openModal();
+  // Prefill calculator values into form
+  setTimeout(() => {
+    const lamt = document.getElementById('f-lamount');
+    const closest = [...lamt.options].reduce((best, opt) => {
+      return Math.abs(parseInt(opt.value) - state.loanAmount) < Math.abs(parseInt(best.value) - state.loanAmount) ? opt : best;
+    });
+    lamt.value = closest.value;
+    document.getElementById('f-tenure').value = state.tenureYr;
+    updateLoanSummary();
+  }, 100);
+}
+
+// ═══════════ ELIGIBILITY CHECKER ═══════════
+function checkEligibility() {
+  const name = prompt('आपका नाम क्या है?');
+  if (!name) return;
+  const age = parseInt(prompt('आपकी आयु कितनी है?'));
+  const turnover = parseInt(prompt('आपका वार्षिक टर्नओवर (लाख में) कितना है?'));
+  const cibil = parseInt(prompt('आपका CIBIL स्कोर क्या है?'));
+  const yrs = parseInt(prompt('आपके व्यवसाय की उम्र (वर्षों में) कितनी है?'));
+
+  let issues = [];
+  if (age < 21 || age > 65) issues.push('❌ आयु 21–65 वर्ष के बीच होनी चाहिए');
+  if (turnover < 10) issues.push('❌ वार्षिक टर्नओवर ₹10 लाख से कम है');
+  if (cibil < 700) issues.push('❌ CIBIL स्कोर 700 से कम है');
+  if (yrs < 2) issues.push('❌ व्यवसाय की उम्र 2 वर्ष से कम है');
+
+  if (issues.length === 0) {
+    showToast('✅ ' + name + ' जी, आप पात्र हैं! आवेदन करें।', 'success');
+    setTimeout(openModal, 1500);
+  } else {
+    showToast('⚠️ कुछ समस्याएं हैं: ' + issues.join(' | '), 'error');
+  }
+}
+
+// ═══════════ TOAST ═══════════
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ═══════════ INIT ═══════════
+window.onload = () => {
+  updateSliderFill(document.getElementById('sl-amount'), 100000, 5000000);
+  updateSliderFill(document.getElementById('sl-rate'), 4, 18);
+  calcEMI();
+};
+</script>
+</body>
+</html>
